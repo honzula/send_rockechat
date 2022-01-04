@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#Made by Honza Prokupek - www.HonzaProkupek.cz
+#v 1.0 2022-01-04
+
+source /etc/send_rocketchat
+
+if [ "$1" == "-h" ]; then
+  echo "Usage: `basename $0` \"text message\" \"rc_chanel\""
+  exit 0
+fi
+
+if [ -z "$1" ]
+  then
+    echo "Add message as first param."
+    exit 1
+fi
+
+if [ -z "$2" ]
+  then
+    channel=$defaultchannel
+else
+    channel=$2
+fi
+
+
+curl --insecure --silent -H "X-Auth-Token: $token" -H "X-User-Id: $user" -H "Content-type: application/json" https://rc.axfone.eu/api/v1/chat.postMessage  -d "{ \"channel\": \"$channel\", \"text\": \"$1\" }" >> /dev/null

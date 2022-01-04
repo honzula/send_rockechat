@@ -1,0 +1,8 @@
+#Rocket.Chat send message via webhooks by Honza Prokupek
+
+#AUTH token
+token=
+#RC user
+user=
+#RC Channel
+defaultchannel=
